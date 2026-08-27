@@ -1,0 +1,35 @@
+<main class="learning-menu">
+  <header class="menu-header">
+    <p class="eyebrow">angular-skills</p>
+    <h1>Senior Angular Path</h1>
+    <p class="progress">{{ doneCount() }} / {{ totalCount() }} phases done</p>
+  </header>
+
+  <ul class="phase-list">
+    @for (phase of phases(); track phase.id) {
+      <li class="phase-card" [attr.data-status]="phase.status">
+        <div class="phase-card-head">
+          <span class="phase-num">{{ phase.id }}</span>
+          <div>
+            <h2>{{ phase.title }}</h2>
+            <p class="focus">{{ phase.focus }}</p>
+          </div>
+          <span class="status-badge" [attr.data-status]="phase.status">
+            {{ statusLabel(phase.status) }}
+          </span>
+        </div>
+
+        <p class="pace">{{ phase.pace }}</p>
+
+        <ul class="topic-list">
+          @for (topic of phase.topics; track topic.title) {
+            <li>
+              <strong>{{ topic.title }}</strong>
+              <span>{{ topic.description }}</span>
+            </li>
+          }
+        </ul>
+      </li>
+    }
+  </ul>
+</main>
