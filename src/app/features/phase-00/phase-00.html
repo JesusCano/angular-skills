@@ -1,0 +1,47 @@
+<main class="phase-page">
+  <a routerLink="/" class="back-link">&larr; Back to menu</a>
+
+  <header class="phase-header">
+    <p class="eyebrow">Phase 00</p>
+    <h1>Foundations refresh</h1>
+    <p class="dek">Make sure the mental model underneath everything else is solid before layering on new APIs.</p>
+  </header>
+
+  <div class="topic-list">
+    @for (topic of topics(); track topic.id) {
+      <section class="topic" [attr.data-status]="topic.status">
+        <div class="topic-head">
+          <h2>{{ topic.title }}</h2>
+          <span class="status-badge" [attr.data-status]="topic.status">
+            {{ statusLabel(topic.status) }}
+          </span>
+        </div>
+
+        <p class="intro">{{ topic.intro }}</p>
+
+        @if (topic.examples.length > 0) {
+          @for (example of topic.examples; track example.title) {
+            <article class="example">
+              <h3>{{ example.title }}</h3>
+              <pre class="code"><code>{{ example.code }}</code></pre>
+              @for (part of explanationParts(example.explanation); track $index) {
+                <p class="explanation" [class.explanation-es]="$index === 1">{{ part }}</p>
+              }
+            </article>
+          }
+        }
+
+        @if (topic.remaining && topic.remaining.length > 0) {
+          <div class="remaining">
+            <p class="remaining-label">Still to demo in this topic</p>
+            <ul>
+              @for (item of topic.remaining; track item) {
+                <li>{{ item }}</li>
+              }
+            </ul>
+          </div>
+        }
+      </section>
+    }
+  </div>
+</main>

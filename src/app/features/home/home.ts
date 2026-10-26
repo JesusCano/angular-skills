@@ -1,9 +1,11 @@
 import { Component, computed, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { NgTemplateOutlet } from '@angular/common';
 import { ROADMAP_PHASES, type Phase, type PhaseStatus } from './roadmap-data';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [RouterLink, NgTemplateOutlet],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

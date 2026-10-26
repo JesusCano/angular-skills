@@ -1,0 +1,92 @@
+<main class="poke-page">
+  <a routerLink="/" class="back-link">&larr; Back to menu / Volver al menú</a>
+
+  <header class="poke-header">
+    <p class="eyebrow">Playground</p>
+    <h1>DI + interceptor + PokeAPI</h1>
+    <p class="subtitle">
+      A working example tying together InjectionToken, HttpClient, an interceptor, and a service/component split.
+      <span class="es">Un ejemplo funcional que junta InjectionToken, HttpClient, un interceptor, y la separación servicio/componente.</span>
+    </p>
+  </header>
+
+  <form class="search-form" (submit)="$event.preventDefault(); search()">
+    <input
+      type="text"
+      [value]="query()"
+      (input)="query.set($any($event.target).value)"
+      placeholder="e.g. pikachu, 132, charizard..."
+      aria-label="Pokémon name or id"
+    />
+    <button type="submit">Search / Buscar</button>
+  </form>
+
+  @if (loading()) {
+    <p class="state">Loading… / Cargando…</p>
+  } @else if (errorMessage()) {
+    <p class="state error">{{ errorMessage() }}</p>
+  } @else if (pokemon(); as p) {
+    <section class="poke-card">
+      @if (spriteUrl(p); as sprite) {
+        <img [src]="sprite" [alt]="p.name" class="poke-sprite" />
+      }
+      <div class="poke-info">
+        <h2>{{ p.name }} <span class="poke-id">#{{ p.id }}</span></h2>
+        <p class="poke-basics">Height: {{ p.height }} · Weight: {{ p.weight }}</p>
+
+        <div class="chip-row">
+          @for (t of p.types; track t.type.name) {
+            <span class="chip" [attr.data-type]="t.type.name">{{ t.type.name }}</span>
+          }
+        </div>
+
+        <ul class="stat-list">
+          @for (s of p.stats; track s.stat.name) {
+            <li>
+              <span class="stat-name">{{ s.stat.name }}</span>
+              <span class="stat-bar-track">
+                <span class="stat-bar-fill" [style.width.%]="(s.base_stat / 150) * 100"></span>
+              </span>
+              <span class="stat-value">{{ s.base_stat }}</span>
+            </li>
+          }
+        </ul>
+
+        <p class="abilities">
+          Abilities / Habilidades:
+          {{ p.abilities.map(a => a.ability.name).join(', ') }}
+        </p>
+      </div>
+    </section>
+  }
+
+  <section class="explain">
+    <h3>How this page is built / Cómo está hecha esta página</h3>
+
+    <dl>
+      <dt><code>APP_CONFIG</code> — <code>InjectionToken&lt;AppConfig&gt;</code></dt>
+      <dd>
+        Holds the real PokeAPI base URL. Provided once, in <code>app.config.ts</code>.
+        <span class="es">Guarda la URL base real de PokeAPI. Se provee una sola vez, en <code>app.config.ts</code>.</span>
+      </dd>
+
+      <dt><code>pokeApiErrorInterceptor</code> — <code>HttpInterceptorFn</code></dt>
+      <dd>
+        Runs on every HTTP call from this app; turns a 404 into a friendly "doesn't exist" message before it reaches the service.
+        <span class="es">Corre en cada llamada HTTP de esta app; convierte un 404 en un mensaje amigable antes de que llegue al servicio.</span>
+      </dd>
+
+      <dt><code>PokemonService</code> — <code>&#64;Injectable({{ '{' }} providedIn: 'root' {{ '}' }})</code></dt>
+      <dd>
+        Injects <code>HttpClient</code> + <code>APP_CONFIG</code>, builds the URL, returns the Observable — never subscribes itself.
+        <span class="es">Inyecta <code>HttpClient</code> + <code>APP_CONFIG</code>, arma la URL, regresa el Observable — nunca se suscribe.</span>
+      </dd>
+
+      <dt><code>PokemonDemo</code> (this component / este componente)</dt>
+      <dd>
+        The one that subscribes, and owns the loading/error/data signals you're looking at right now.
+        <span class="es">El que se suscribe, y es dueño de las signals de carga/error/data que estás viendo ahora mismo.</span>
+      </dd>
+    </dl>
+  </section>
+</main>

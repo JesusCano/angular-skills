@@ -13,6 +13,7 @@ export interface Phase {
   readonly pace: string;
   readonly status: PhaseStatus;
   readonly topics: readonly Topic[];
+  readonly route?: string;
 }
 
 export const ROADMAP_PHASES: readonly Phase[] = [
@@ -23,6 +24,7 @@ export const ROADMAP_PHASES: readonly Phase[] = [
     focus: 'Make sure the mental model underneath everything else is solid.',
     pace: '~3-4 days',
     status: 'in-progress',
+    route: '/00',
     topics: [
       { title: 'TypeScript depth', description: 'Generics, utility types, discriminated unions, strict mode, decorators.' },
       { title: "Angular's compilation model", description: 'Ivy, AOT vs JIT, how templates become instructions.' },

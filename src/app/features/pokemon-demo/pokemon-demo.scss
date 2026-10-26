@@ -1,0 +1,261 @@
+:host {
+  --accent: #b3184a;
+  --accent-2: #5b3df0;
+  --ink: #1c1522;
+  --ink-soft: #5c5266;
+  --ink-faint: #918aa0;
+  --line: #e4dfe8;
+  --paper-2: #ffffff;
+  --track: #efeafd;
+
+  display: block;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--ink);
+}
+
+.back-link {
+  display: inline-block;
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.back-link:hover {
+  color: var(--accent-2);
+}
+
+.poke-header {
+  margin-bottom: 1.75rem;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin: 0 0 0.6rem;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  color: var(--ink-soft);
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.subtitle .es {
+  display: block;
+  margin-top: 0.4rem;
+  font-style: italic;
+  color: var(--ink-faint);
+}
+
+.search-form {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.search-form input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--paper-2);
+}
+
+.search-form button {
+  padding: 0.6rem 1.1rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent-2);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.search-form button:hover {
+  opacity: 0.9;
+}
+
+.state {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.state.error {
+  color: var(--accent);
+}
+
+.poke-card {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-2);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.poke-sprite {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.poke-info h2 {
+  margin: 0 0 0.3rem;
+  font-size: 1.3rem;
+  text-transform: capitalize;
+}
+
+.poke-id {
+  color: var(--ink-faint);
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.poke-basics {
+  color: var(--ink-soft);
+  margin: 0 0 0.8rem;
+  font-size: 0.9rem;
+}
+
+.chip-row {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.chip {
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  background: var(--track);
+  color: var(--accent-2);
+}
+
+.stat-list {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.stat-list li {
+  display: grid;
+  grid-template-columns: 90px 1fr 32px;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+}
+
+.stat-name {
+  text-transform: capitalize;
+  color: var(--ink-soft);
+}
+
+.stat-bar-track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--track);
+  overflow: hidden;
+}
+
+.stat-bar-fill {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+.stat-value {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.abilities {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  text-transform: capitalize;
+  margin: 0;
+}
+
+.explain {
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+}
+
+.explain h3 {
+  font-size: 1.05rem;
+  margin: 0 0 1rem;
+}
+
+.explain dl {
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.explain dt {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-2);
+  margin-bottom: 0.25rem;
+}
+
+.explain dt code,
+.explain dd code {
+  font-family: ui-monospace, monospace;
+  background: var(--track);
+  padding: 0.1rem 0.35rem;
+  border-radius: 5px;
+  font-size: 0.85em;
+}
+
+.explain dd {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.explain dd .es {
+  display: block;
+  margin-top: 0.3rem;
+  font-style: italic;
+  color: var(--ink-faint);
+}
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    --ink: #f1ecf5;
+    --ink-soft: #b7adc5;
+    --ink-faint: #786f8a;
+    --line: #2e2839;
+    --paper-2: #1b1723;
+    --accent: #ff5c86;
+    --accent-2: #9c85ff;
+    --track: #241f2c;
+  }
+}

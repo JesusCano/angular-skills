@@ -63,6 +63,28 @@ h1 {
   border-left: 3px solid #1a7a4c;
 }
 
+.phase-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.phase-card[data-linked='true'] {
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.phase-card[data-linked='true']:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px -8px rgba(179, 24, 74, 0.35);
+}
+
+.phase-link:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
 .phase-card-head {
   display: flex;
   align-items: flex-start;
@@ -155,6 +177,43 @@ h2 {
 
 .topic-list span {
   color: var(--ink-soft);
+}
+
+.playground {
+  margin-top: 2rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.playground h2 {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+}
+
+.playground p {
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  margin: 0 0 0.9rem;
+}
+
+.playground p .es {
+  display: block;
+  margin-top: 0.3rem;
+  font-style: italic;
+  color: var(--ink-faint);
+}
+
+.playground-link {
+  display: inline-block;
+  color: var(--accent-2);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.playground-link:hover {
+  text-decoration: underline;
 }
 
 @media (prefers-color-scheme: dark) {

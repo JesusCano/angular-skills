@@ -7,29 +7,50 @@
 
   <ul class="phase-list">
     @for (phase of phases(); track phase.id) {
-      <li class="phase-card" [attr.data-status]="phase.status">
-        <div class="phase-card-head">
-          <span class="phase-num">{{ phase.id }}</span>
-          <div>
-            <h2>{{ phase.title }}</h2>
-            <p class="focus">{{ phase.focus }}</p>
-          </div>
-          <span class="status-badge" [attr.data-status]="phase.status">
-            {{ statusLabel(phase.status) }}
-          </span>
-        </div>
-
-        <p class="pace">{{ phase.pace }}</p>
-
-        <ul class="topic-list">
-          @for (topic of phase.topics; track topic.title) {
-            <li>
-              <strong>{{ topic.title }}</strong>
-              <span>{{ topic.description }}</span>
-            </li>
-          }
-        </ul>
+      <li class="phase-card" [attr.data-status]="phase.status" [attr.data-linked]="!!phase.route">
+        @if (phase.route) {
+          <a [routerLink]="phase.route" class="phase-link">
+            <ng-container [ngTemplateOutlet]="cardBody" [ngTemplateOutletContext]="{ phase }" />
+          </a>
+        } @else {
+          <ng-container [ngTemplateOutlet]="cardBody" [ngTemplateOutletContext]="{ phase }" />
+        }
       </li>
     }
   </ul>
+
+  <section class="playground">
+    <h2>Playground</h2>
+    <p>
+      Hands-on examples that aren't tied to a specific phase — real APIs, real DI wiring.
+      <span class="es">Ejemplos prácticos que no están ligados a una fase específica — APIs reales, cableado de DI real.</span>
+    </p>
+    <a routerLink="/playground/pokemon" class="playground-link">
+      DI + interceptor + PokeAPI &rarr;
+    </a>
+  </section>
 </main>
+
+<ng-template #cardBody let-phase="phase">
+  <div class="phase-card-head">
+    <span class="phase-num">{{ phase.id }}</span>
+    <div>
+      <h2>{{ phase.title }}</h2>
+      <p class="focus">{{ phase.focus }}</p>
+    </div>
+    <span class="status-badge" [attr.data-status]="phase.status">
+      {{ statusLabel(phase.status) }}
+    </span>
+  </div>
+
+  <p class="pace">{{ phase.pace }}</p>
+
+  <ul class="topic-list">
+    @for (topic of phase.topics; track topic.title) {
+      <li>
+        <strong>{{ topic.title }}</strong>
+        <span>{{ topic.description }}</span>
+      </li>
+    }
+  </ul>
+</ng-template>
